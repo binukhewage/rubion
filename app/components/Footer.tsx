@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className="bg-zinc-950 text-white pt-24 pb-8 overflow-hidden relative">
       
       {/* --- Background Glows --- */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-lime-500/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-lime-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -80,7 +80,7 @@ export default function Footer() {
         </div>
 
         {/* Separator */}
-        <div className="w-full h-[1px] bg-zinc-800 mb-12" />
+        <div className="w-full h-px bg-zinc-800 mb-12" />
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-zinc-500 font-medium">

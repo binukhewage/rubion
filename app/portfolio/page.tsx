@@ -1,8 +1,7 @@
 "use client";
 
-import Navbar from "../components/Navbar";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowUpRight, Code2 } from "lucide-react";
 
 // --- Mock Data ---
@@ -32,18 +31,32 @@ const projects = [
 ];
 
 // --- Animations ---
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+const fadeInUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1], // replaces "easeOut"
+    },
+  },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
   },
 };
+
 
 export default function Portfolio() {
   return (

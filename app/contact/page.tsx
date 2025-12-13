@@ -1,7 +1,6 @@
 "use client";
 
-import Navbar from "../components/Navbar";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { 
   Mail, 
   MapPin, 
@@ -14,18 +13,32 @@ import {
 } from "lucide-react";
 
 // --- Animation Variants ---
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+const fadeInUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1], // replaces "easeOut"
+    },
+  },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
 };
+
 
 export default function Contact() {
   return (
@@ -73,10 +86,10 @@ export default function Contact() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-zinc-950 text-white rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col justify-between min-h-[500px]"
+            className="bg-zinc-950 text-white rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col justify-between min-h-125"
           >
             {/* Glow Effect */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-zinc-800/30 rounded-full blur-[80px]" />
+            <div className="absolute top-0 right-0 w-75 h-75 bg-zinc-800/30 rounded-full blur-[80px]" />
 
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 border border-zinc-700 rounded-full px-4 py-1 text-xs uppercase tracking-widest mb-8">

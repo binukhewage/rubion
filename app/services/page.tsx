@@ -33,7 +33,7 @@ const services = [
     id: 3,
     icon: Cloud,
     title: "Hosting & Deployment",
-    desc: "Forget the technical headaches. We handle domain setup, SSL certification, and deployment to high-speed CDNs like Vercel or Netlify to ensure 99.9% uptime.",
+    desc: "Forget the technical headaches. We handle domain setup, SSL certification, and deployment to high-speed CDNs and ensure 100% uptime.",
     features: ["SSL Certification", "CDN Configuration", "Automated Backups"]
   },
   {
@@ -89,7 +89,7 @@ const staggerContainer: Variants = {
 
 export default function Services() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden">
+    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden py-40">
       
       {/* --- Background Gradient Mesh --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">

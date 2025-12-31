@@ -7,6 +7,7 @@ import {
   ArrowRight, 
   Atom, 
   Code2, 
+  Cloud,
   Layers, 
   MoveRight, 
   Twitter, 
@@ -26,7 +27,8 @@ import {
   Send,
   Heart,
   MessageCircle,
-  HelpCircle
+  HelpCircle,
+  Zap,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -34,21 +36,21 @@ import { useState, useEffect, useRef } from "react";
 const services = [
   {
     id: 1,
-    icon: Globe,
+    icon: Code2,
     title: "Modern Website Development",
-    desc: "We design and develop fast, responsive, and SEO-friendly websites built for performance and scalability.",
+    desc: "We design and develop fast and responsive websites built for performance and scalability.",
   },
   {
     id: 2,
-    icon: ShoppingCart,
-    title: "E-commerce Solutions",
+    icon: Cloud,
+    title: "Hosting & Deployment",
     desc: "We build secure, scalable e-commerce platforms that deliver seamless shopping experiences and drive sales.",
   },
   {
     id: 3,
-    icon: Settings,
-    title: "Custom Web Applications",
-    desc: "We create tailored web applications designed to streamline workflows and meet unique business needs.",
+    icon: Zap,
+    title: "Performance and SEO",
+    desc: "We optimize your site's core web vitals and structure your content for search engines, helping you rank higher and retain more visitors.",
   },
 ];
 
@@ -61,7 +63,7 @@ const projects = [
     description:
       "Ceylon Wild Escapes is a modern, responsive wildlife tourism website built with performance, accessibility, and scalability in mind.",
     tech: ["Next.js", "Tailwind CSS"],
-    link: "https://example.com/project-1",
+    link: "https://www.ceylonwildescapes.com",
     accentColor: "bg-lime-400",
     image: "/p1.png", 
   },
@@ -82,43 +84,27 @@ const projects = [
 const reviews = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "CEO, TechNova",
+    name: "Roshan Peiris",
+    role: "Founder, Ceylon Wild Escapes",
     content: "Working with rubion.dev transformed our online presence. Their attention to detail and technical expertise is unmatched.",
     rating: 5,
     avatar: "/avatar1.jpg",
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Founder, GreenEats",
+    name: "Himath De Soysa",
+    role: "Founder, GoatCult",
     content: "The e-commerce platform they built increased our sales by 300%. Exceptional service from start to finish.",
     rating: 5,
     avatar: "/avatar2.jpg",
   },
   {
     id: 3,
-    name: "Emma Wilson",
+    name: "Shehara Madurawala",
     role: "Marketing Director, Bloom",
     content: "Professional, creative, and always on time. Our website loads faster than any competitor in our industry.",
     rating: 5,
     avatar: "/avatar3.jpg",
-  },
-  {
-    id: 4,
-    name: "David Park",
-    role: "CTO, FlowFinance",
-    content: "The custom web application streamlined our entire workflow. The team understood our needs perfectly.",
-    rating: 5,
-    avatar: "/avatar4.jpg",
-  },
-  {
-    id: 5,
-    name: "Lisa Rodriguez",
-    role: "Owner, UrbanBrew",
-    content: "From concept to launch, the process was smooth and transparent. Highly recommended!",
-    rating: 5,
-    avatar: "/avatar5.jpg",
   },
 ];
 
@@ -190,7 +176,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden">
+    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden py-40">
       
       {/* --- Background Gradient Mesh --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -244,8 +230,8 @@ export default function Home() {
             animate="visible"
           >
             <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-8">
-              Trusted <span className="bg-zinc-900 text-white px-4 rounded-xl inline-block transform -rotate-2">Partner</span> for <br />
-              Your Website <span className="bg-zinc-900 text-white px-4 rounded-xl inline-block transform rotate-1">Develop.</span>
+              Your <span className="bg-zinc-900 text-white px-4 rounded-xl inline-block transform -rotate-2">Trusted</span> Partner <br />
+              For Web <span className="bg-zinc-900 text-white px-4 rounded-xl inline-block transform rotate-1">Solutions.</span>
             </motion.h1>
 
             <motion.div variants={fadeInUp} className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mt-12">
@@ -463,9 +449,9 @@ export default function Home() {
             {/* Stats (Inside Box) */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-12 border-t border-zinc-800/50 relative z-10">
               {[
-                { value: "99%", label: "Client Satisfaction" },
-                { value: "200+", label: "Projects Completed" },
-                { value: "50+", label: "Happy Clients" },
+                { value: "100%", label: "Client Satisfaction" },
+                { value: "10+", label: "Projects Completed" },
+                { value: "10+", label: "Happy Clients" },
                 { value: "24/7", label: "Support Available" }
               ].map((stat, index) => (
                 <div key={index} className="text-center">

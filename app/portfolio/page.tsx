@@ -13,7 +13,7 @@ const projects = [
     description:
       "Ceylon Wild Escapes is a modern, responsive wildlife tourism website built with performance, accessibility, and scalability in mind. The project emphasizes clean UI design and SEO optimization.",
     tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    link: "https://example.com/project-1",
+    link: "https://wwww.ceylonwildescapes.com",
     accentColor: "bg-lime-400",
     image: "/p1.png", 
   },
@@ -60,7 +60,7 @@ const staggerContainer: Variants = {
 
 export default function Portfolio() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden">
+    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden py-40">
       {/* --- Background Gradient Mesh --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <motion.div

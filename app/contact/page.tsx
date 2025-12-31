@@ -42,7 +42,7 @@ const staggerContainer: Variants = {
 
 export default function Contact() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden">
+    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden py-40">
       
       {/* --- Background Gradient Mesh --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">

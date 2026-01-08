@@ -47,11 +47,6 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 text-zinc-300 font-medium">
               <li>
                 <a href="#" className="flex items-center gap-2 hover:text-lime-400 transition-colors group">
-                  <Twitter className="w-4 h-4 group-hover:scale-110 transition-transform" /> Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center gap-2 hover:text-lime-400 transition-colors group">
                   <Instagram className="w-4 h-4 group-hover:scale-110 transition-transform" /> Instagram
                 </a>
               </li>

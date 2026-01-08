@@ -24,7 +24,7 @@ export default function Navbar() {
         {/* --- LEFT: LOGO --- */}
         <div className="pl-4">
           <Link href="/" className="font-bold text-lg tracking-tight text-white hover:opacity-80 transition-opacity">
-            RUBION.
+            RUBION
           </Link>
         </div>
 

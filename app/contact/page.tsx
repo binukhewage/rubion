@@ -99,8 +99,8 @@ export default function Contact() {
               <h3 className="text-3xl font-bold mb-12">Get In Touch</h3>
               
               <div className="space-y-8">
-                <ContactItem icon={<Mail className="w-6 h-6 text-lime-400" />} label="Email Us" value="hello@rubion.dev" />
-                <ContactItem icon={<Phone className="w-6 h-6 text-lime-400" />} label="Call Us" value="+1 (555) 000-0000" />
+                <ContactItem icon={<Mail className="w-6 h-6 text-lime-400" />} label="Email Us" value="rubiondev@gmail.com" />
+                <ContactItem icon={<Phone className="w-6 h-6 text-lime-400" />} label="Call Us" value="+94 77 166 7277" />
                 <ContactItem icon={<MapPin className="w-6 h-6 text-lime-400" />} label="Location" value="Colombo, Sri Lanka" />
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function Contact() {
             <div className="relative z-10 mt-12 pt-12 border-t border-zinc-800">
                <h4 className="text-sm text-zinc-400 uppercase tracking-wider mb-4">Follow US on </h4>
                <div className="flex gap-4">
-                  {[Twitter, Instagram, Facebook].map((Icon, i) => (
+                  {[Instagram, Facebook].map((Icon, i) => (
                     <a key={i} href="#" className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-lime-400 hover:text-black hover:border-lime-400 transition-all">
                       <Icon className="w-4 h-4" />
                     </a>

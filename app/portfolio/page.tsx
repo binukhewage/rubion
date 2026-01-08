@@ -93,7 +93,7 @@ export default function Portfolio() {
             & Projects.
           </h1>
           <p className="text-lg text-zinc-600 max-w-xl">
-            A curated selection of projects that showcase my skills in design,
+            A curated selection of projects that showcase our skills in design,
             development, and strategy.
           </p>
         </motion.div>

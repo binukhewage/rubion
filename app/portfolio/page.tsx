@@ -13,7 +13,7 @@ const projects = [
     description:
       "Ceylon Wild Escapes is a modern, responsive wildlife tourism website built with performance, accessibility, and scalability in mind. The project emphasizes clean UI design and SEO optimization.",
     tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    link: "https://wwww.ceylonwildescapes.com",
+    link: "https://www.ceylonwildescapes.com",
     accentColor: "bg-lime-400",
     image: "/p001.png", 
   },
@@ -35,7 +35,7 @@ const projects = [
     description:
       "Shey Collective is a branding and portfolio website for a local artist. The website features a clean, minimalist design with a focus on showcasing the artist's work and brand.",
     tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    link: "https://www.sheycollective.com",
+    link: "https://sheycollective.vercel.app/",
     accentColor: "bg-purple-400",
     image: "/p3.png", 
   },
@@ -162,7 +162,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             </span>
           </div>
 
-          <h3 className="text-3xl font-bold mb-4 leading-tight group-hover:text-lime-400 transition-colors">
+          <h3 className="text-3xl font-bold mb-4 leading-tight transition-transform duration-500 group-hover:translate-y-1">
             {project.title}
           </h3>
 

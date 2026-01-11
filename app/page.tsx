@@ -145,6 +145,20 @@ const faqs = [
   },
 ];
 
+const socials = [
+  
+  {
+    icon: Instagram,
+    href: "https://instagram.com/rubion.dev",
+    label: "Instagram",
+  },
+  {
+    icon: Facebook,
+    href: "https://facebook.com/rubion.dev",
+    label: "Facebook",
+  },
+];
+
 // --- Animation Variants (FIXED WITH TYPES) ---
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -209,29 +223,34 @@ export default function Home() {
         <div className="flex flex-col md:flex-row">
           {/* Social Sidebar */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="hidden md:flex flex-col gap-6 items-center justify-center mr-12 mt-12"
-          >
-            <div className="h-20 w-[1px] bg-zinc-300"></div>
-            {[Twitter, Instagram, Facebook].map((Icon, i) => (
-              <motion.a
-                key={i}
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                href="#"
-                className="p-2 bg-zinc-100 rounded-full hover:bg-lime-300 transition-colors"
-              >
-                <Icon className="w-4 h-4" />
-              </motion.a>
-            ))}
-            <div
-              className="text-xs font-mono rotate-180 text-zinc-400"
-              style={{ writingMode: "vertical-rl" }}
-            >
-              @rubion.dev
-            </div>
-          </motion.div>
+  initial={{ opacity: 0, x: -50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.5 }}
+  className="hidden md:flex flex-col gap-6 items-center justify-center mr-12 mt-12"
+>
+  <div className="h-20 w-[1px] bg-zinc-300"></div>
+
+  {socials.map(({ icon: Icon, href, label }, i) => (
+    <motion.a
+      key={i}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      whileHover={{ scale: 1.2, rotate: 10 }}
+      className="p-2 bg-zinc-100 rounded-full hover:bg-lime-300 transition-colors"
+    >
+      <Icon className="w-4 h-4" />
+    </motion.a>
+  ))}
+
+  <div
+    className="text-xs font-mono rotate-180 text-zinc-400"
+    style={{ writingMode: "vertical-rl" }}
+  >
+    @rubion.dev
+  </div>
+</motion.div>
 
           {/* Main Content */}
           <motion.div

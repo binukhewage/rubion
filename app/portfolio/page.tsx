@@ -15,7 +15,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
     link: "https://wwww.ceylonwildescapes.com",
     accentColor: "bg-lime-400",
-    image: "/p1.png", 
+    image: "/p001.png", 
   },
   {
     id: 2,
@@ -27,6 +27,17 @@ const projects = [
     link: "https://www.goatcult.lk",
     accentColor: "bg-cyan-400",
     image: "/p2.png", 
+  },
+  {
+    id: 3,
+    title: "Shey Collective",
+    category: "Branding & Portfolio",
+    description:
+      "Shey Collective is a branding and portfolio website for a local artist. The website features a clean, minimalist design with a focus on showcasing the artist's work and brand.",
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    link: "https://www.sheycollective.com",
+    accentColor: "bg-purple-400",
+    image: "/p3.png", 
   },
 ];
 

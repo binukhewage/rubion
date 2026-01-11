@@ -65,7 +65,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS"],
     link: "https://www.ceylonwildescapes.com",
     accentColor: "bg-lime-400",
-    image: "/p1.png",
+    image: "/p001.png",
   },
   {
     id: 2,

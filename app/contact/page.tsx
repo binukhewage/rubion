@@ -1,161 +1,149 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Mail, 
   MapPin, 
   Phone, 
-  ArrowRight, 
-  Twitter, 
-  Instagram, 
-  Facebook, 
-  Send
+  ArrowRight,
+  Check,
+  Clock
 } from "lucide-react";
-
-// --- Animation Variants ---
-const fadeInUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1], // replaces "easeOut"
-    },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
-
+import { useState } from "react";
 
 export default function Contact() {
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [activeBudget, setActiveBudget] = useState("100k - 300k");
+
+  const toggleService = (service: string) => {
+    if (selectedServices.includes(service)) {
+      setSelectedServices(selectedServices.filter(s => s !== service));
+    } else {
+      setSelectedServices([...selectedServices, service]);
+    }
+  };
+
+  const services = ["Web Development", "E-Commerce", "UI/UX Design", "Consulting"];
+  const budgets = ["50-100k", "100-300k", "300k+"];
+
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden py-40">
+    <main className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-lime-400 selection:text-black overflow-x-hidden py-50 font-sans">
       
-      {/* --- Background Gradient Mesh --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <motion.div 
-          animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-lime-300/40 rounded-full blur-[100px] mix-blend-multiply" 
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], x: [0, -50, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-green-200/40 rounded-full blur-[100px] mix-blend-multiply" 
-        />
-      </div>
+      {/* --- Texture & Glow --- */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.04] z-[50] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      <div className="fixed top-[-20%] right-[-10%] w-[800px] h-[800px] bg-lime-400/5 rounded-full blur-[120px] pointer-events-none" />
 
-      
-
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24">
+      <section className="relative z-10 max-w-6xl mx-auto px-6">
         
-        {/* Header */}
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          className="mb-16 md:mb-24"
-        >
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-6">
-            Let's Start a <br />
-            <span className="bg-zinc-900 text-white px-4 rounded-xl inline-block transform -rotate-2">Project</span> Together.
-          </h1>
-          <p className="text-lg text-zinc-600 max-w-xl">
-            Have an idea? I can help you bring it to life. Send me a message and I'll get back to you within 24 hours.
-          </p>
-        </motion.div>
-
-        {/* Contact Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-24">
           
-          {/* Left: Contact Info Card (Dark) */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-zinc-950 text-white rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col justify-between min-h-125"
-          >
-            {/* Glow Effect */}
-            <div className="absolute top-0 right-0 w-75 h-75 bg-zinc-800/30 rounded-full blur-[80px]" />
+          {/* --- LEFT: Context & Info --- */}
+          <div className="lg:col-span-2 pt-8">
+             <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               className="mb-12"
+             >
+                <div className="inline-flex items-center gap-2 text-lime-400 font-mono text-xs uppercase tracking-widest mb-6">
+                  <span className="w-2 h-2 bg-lime-400 rounded-full animate-pulse" />
+                  Accepting Projects
+                </div>
+                <h1 className="text-5xl font-bold text-white tracking-tight mb-6">
+                  Let's discuss <br /> your vision.
+                </h1>
+                <p className="text-zinc-400 leading-relaxed text-sm">
+                  We help ambitious brands build high-performance digital products. Fill out the form, and we'll be in touch within 24 hours.
+                </p>
+             </motion.div>
 
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 border border-zinc-700 rounded-full px-4 py-1 text-xs uppercase tracking-widest mb-8">
-                <div className="w-2 h-2 bg-lime-400 rounded-full animate-pulse" /> Available for work
-              </div>
-              
-              <h3 className="text-3xl font-bold mb-12">Get In Touch</h3>
+             <div className="space-y-6 border-t border-zinc-800 pt-8">
+                <ContactRow icon={Mail} label="Email" value="rubiondev@gmail.com" />
+                <ContactRow icon={Phone} label="Phone" value="+94 77 166 7277" />
+                <ContactRow icon={MapPin} label="Office" value="Colombo, Sri Lanka" />
+             </div>
+          </div>
+
+          {/* --- RIGHT: The Clean Form --- */}
+          <div className="lg:col-span-3">
+            <motion.form 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-zinc-900/30 border border-zinc-800 rounded-3xl p-8 md:p-10 backdrop-blur-sm shadow-2xl"
+            >
               
               <div className="space-y-8">
-                <ContactItem icon={<Mail className="w-6 h-6 text-lime-400" />} label="Email Us" value="rubiondev@gmail.com" />
-                <ContactItem icon={<Phone className="w-6 h-6 text-lime-400" />} label="Call Us" value="+94 77 166 7277" />
-                <ContactItem icon={<MapPin className="w-6 h-6 text-lime-400" />} label="Location" value="Colombo, Sri Lanka" />
+                
+                {/* 1. Identity */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <CleanInput label="Name" placeholder="John Doe" />
+                  <CleanInput label="Email" placeholder="john@example.com" type="email" />
+                </div>
+
+                {/* 2. Services Grid */}
+                <div>
+                   <label className="block text-xs font-bold text-white uppercase tracking-wider mb-4">I need help with...</label>
+                   <div className="grid grid-cols-2 gap-3">
+                      {services.map((service) => (
+                        <button
+                          key={service}
+                          type="button"
+                          onClick={() => toggleService(service)}
+                          className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium border transition-all ${
+                            selectedServices.includes(service)
+                              ? "bg-white text-black border-white"
+                              : "bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+                          }`}
+                        >
+                          {service}
+                          {selectedServices.includes(service) && <Check className="w-4 h-4" />}
+                        </button>
+                      ))}
+                   </div>
+                </div>
+
+                {/* 3. Budget Grid */}
+                <div>
+                   <label className="block text-xs font-bold text-white uppercase tracking-wider mb-4">Budget Range (LKR)</label>
+                   <div className="grid grid-cols-3 gap-3">
+                      {budgets.map((budget) => (
+                        <button
+                          key={budget}
+                          type="button"
+                          onClick={() => setActiveBudget(budget)}
+                          className={`px-2 py-3 rounded-xl text-sm font-medium border text-center transition-all ${
+                            activeBudget === budget
+                              ? "bg-zinc-800 text-white border-lime-400"
+                              : "bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+                          }`}
+                        >
+                          {budget}
+                        </button>
+                      ))}
+                   </div>
+                </div>
+
+                {/* 4. Message */}
+                <div>
+                  <label className="block text-xs font-bold text-white uppercase tracking-wider mb-2">Project Details</label>
+                  <textarea 
+                    rows={4}
+                    className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-400 focus:ring-1 focus:ring-lime-400 transition-all resize-none text-sm"
+                    placeholder="Tell us about your project goals and timeline..."
+                  />
+                </div>
+
+                {/* Submit */}
+                <button 
+                  type="submit"
+                  className="w-full bg-lime-400 text-black h-14 rounded-xl font-bold text-sm uppercase tracking-wider hover:bg-lime-300 transition-colors flex items-center justify-center gap-2"
+                >
+                   Send Request <ArrowRight className="w-4 h-4" />
+                </button>
+
               </div>
-            </div>
-
-            {/* Socials at bottom */}
-            <div className="relative z-10 mt-12 pt-12 border-t border-zinc-800">
-               <h4 className="text-sm text-zinc-400 uppercase tracking-wider mb-4">Follow US on </h4>
-               <div className="flex gap-4">
-                  {[Instagram, Facebook].map((Icon, i) => (
-                    <a key={i} href="#" className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-lime-400 hover:text-black hover:border-lime-400 transition-all">
-                      <Icon className="w-4 h-4" />
-                    </a>
-                  ))}
-               </div>
-            </div>
-          </motion.div>
-
-          {/* Right: Form */}
-          <motion.form 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col gap-6 p-4 md:p-8"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <InputGroup label="First Name" placeholder="John" />
-              <InputGroup label="Last Name" placeholder="Doe" />
-            </div>
-            
-            <InputGroup label="Email Address" placeholder="john@example.com" type="email" />
-            
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Service Interest</label>
-              <select className="w-full bg-zinc-50 border-b-2 border-zinc-200 p-4 outline-none focus:border-black transition-colors rounded-lg">
-                <option>Web Development</option>
-                <option>Custom Web Solutions</option>
-                <option>E - Commerce Solutions</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Message</label>
-              <textarea 
-                rows={4} 
-                placeholder="Tell me about your project..."
-                className="w-full bg-zinc-50 border-b-2 border-zinc-200 p-4 outline-none focus:border-black transition-colors resize-none rounded-t-lg"
-              />
-            </div>
-
-            <button className="mt-4 bg-zinc-900 text-white rounded-full py-4 px-8 font-bold text-lg flex items-center justify-center gap-3 hover:bg-zinc-800 transition-all group">
-              Send Message
-              <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </button>
-          </motion.form>
+            </motion.form>
+          </div>
 
         </div>
       </section>
@@ -163,31 +151,31 @@ export default function Contact() {
   );
 }
 
-// --- Sub Components ---
+// --- Components ---
 
-function ContactItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
+function CleanInput({ label, placeholder, type = "text" }: { label: string, placeholder: string, type?: string }) {
   return (
-    <div className="flex items-center gap-4">
-      <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-        {icon}
-      </div>
-      <div>
-        <div className="text-xs text-zinc-400 uppercase tracking-wider mb-1">{label}</div>
-        <div className="font-semibold text-lg">{value}</div>
-      </div>
+    <div className="flex flex-col gap-2">
+      <label className="text-xs font-bold text-white uppercase tracking-wider">{label}</label>
+      <input 
+        type={type} 
+        placeholder={placeholder}
+        className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-400 focus:ring-1 focus:ring-lime-400 transition-all text-sm"
+      />
     </div>
   )
 }
 
-function InputGroup({ label, placeholder, type = "text" }: { label: string, placeholder: string, type?: string }) {
+function ContactRow({ icon: Icon, label, value }: { icon: any, label: string, value: string }) {
   return (
-    <div className="flex flex-col gap-2">
-      <label className="text-sm font-semibold uppercase tracking-wider text-zinc-500">{label}</label>
-      <input 
-        type={type} 
-        placeholder={placeholder}
-        className="w-full bg-zinc-50 border-b-2 border-zinc-200 p-4 outline-none focus:border-black transition-colors rounded-t-lg"
-      />
+    <div className="flex items-center gap-4">
+      <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400">
+        <Icon className="w-4 h-4" />
+      </div>
+      <div>
+        <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold">{label}</div>
+        <div className="text-zinc-200 text-sm font-medium">{value}</div>
+      </div>
     </div>
   )
 }

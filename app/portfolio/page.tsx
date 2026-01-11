@@ -1,8 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
-import { ArrowUpRight, Code2 } from "lucide-react";
+import { motion, useMotionTemplate, useMotionValue, Variants } from "framer-motion";
+import { ArrowUpRight, Code2, Layers, Github, Globe } from "lucide-react";
+import { MouseEvent } from "react";
+
+// --- Utility: Spotlight Effect ---
+function useMousePosition() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  return { mouseX, mouseY, handleMouseMove };
+}
 
 // --- Mock Data ---
 const projects = [
@@ -11,49 +26,44 @@ const projects = [
     title: "Ceylon Wild Escapes",
     category: "Web Development",
     description:
-      "Ceylon Wild Escapes is a modern, responsive wildlife tourism website built with performance, accessibility, and scalability in mind. The project emphasizes clean UI design and SEO optimization.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      "A modern wildlife tourism website designed for performance and storytelling. Built with a responsive layout, smooth page animations, and a custom contact-based booking workflow optimized for accessibility and speed.",
+    tech: ["Next.js 14", "Tailwind CSS", "Framer Motion"],
     link: "https://www.ceylonwildescapes.com",
-    accentColor: "bg-lime-400",
-    image: "/p001.png", 
+    image: "/p001.png",
+    year: "2025",
   },
   {
     id: 2,
     title: "GOAT CULT",
     category: "E-Commerce",
     description:
-      "G.O.A.T CULT is a scalable e-commerce buying and selling platform. The system supports product listings, user accounts, and streamlined transactions with a mobile-first design.",
-    tech: ["React", "Node.js", "PostgreSQL"],
+      "An e-commerce fashion brand platform built to showcase products, brand identity, and future scalability. Features include product listings, responsive UI, and a structured frontend ready for payment and order integrations.",
+    tech: ["React", "Node.js", "MongoDB"],
     link: "https://www.goatcult.lk",
-    accentColor: "bg-cyan-400",
-    image: "/p2.png", 
+    image: "/p2.png",
+    year: "2024",
   },
   {
     id: 3,
     title: "Shey Collective",
-    category: "Branding & Portfolio",
+    category: "Branding",
     description:
-      "Shey Collective is a branding and portfolio website for a local artist. The website features a clean, minimalist design with a focus on showcasing the artist's work and brand.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      "A minimalist brand portfolio website focused on visual storytelling. Includes smooth page transitions, refined typography, and interactive animations to highlight creative work and brand identity.",
+    tech: ["Next.js", "GSAP", "Prisma"],
     link: "https://sheycollective.vercel.app/",
-    accentColor: "bg-purple-400",
-    image: "/p3.png", 
+    image: "/p3.png",
+    year: "2023",
   },
+  
 ];
 
 // --- Animations ---
 const fadeInUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1], // replaces "easeOut"
-    },
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" } 
   },
 };
 
@@ -61,51 +71,39 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
-
 export default function Portfolio() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-lime-300 selection:text-black overflow-x-hidden py-40">
-      {/* --- Background Gradient Mesh --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] bg-lime-300/30 rounded-full blur-[100px] mix-blend-multiply"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], x: [0, 50, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-green-200/40 rounded-full blur-[120px] mix-blend-multiply"
-        />
-      </div>
-
+    <main className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-lime-400 selection:text-black overflow-x-hidden py-50 ">
       
+      {/* --- Global Grain Texture --- */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.04] z-[50] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24">
+      {/* --- Ambient Glow --- */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-lime-400/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <section className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
-          className="mb-16 md:mb-24"
+          className="mb-20 max-w-3xl"
         >
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-6">
+          <div className="inline-flex items-center gap-2 border border-zinc-800 bg-zinc-900/50 px-3 py-1 rounded-full text-[10px] uppercase tracking-widest text-lime-400 mb-6 font-mono">
+            <span className="w-2 h-2 bg-lime-400 rounded-full animate-pulse"/>
+            Portfolio
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
             Selected <br />
-            <span className="bg-zinc-900 text-white px-4 rounded-xl inline-block transform -rotate-1">
-              Works
-            </span>{" "}
-            & Projects.
+            <span className="text-zinc-600">Engineering Works.</span>
           </h1>
-          <p className="text-lg text-zinc-600 max-w-xl">
-            A curated selection of projects that showcase our skills in design,
-            development, and strategy.
+          <p className="text-lg text-zinc-400 max-w-xl leading-relaxed">
+            A curation of projects pushing the boundaries of performance, interaction, and scalability.
           </p>
         </motion.div>
 
@@ -114,11 +112,10 @@ export default function Portfolio() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          // GRID LAYOUT: 1 column on mobile, 2 columns on large screens
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </motion.div>
       </section>
@@ -126,73 +123,81 @@ export default function Portfolio() {
   );
 }
 
-// --- Project Card Component ---
+// --- Components ---
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+function ProjectCard({ project }: { project: any }) {
+  const { mouseX, mouseY, handleMouseMove } = useMousePosition();
+
   return (
-    <motion.div variants={fadeInUp} className="group h-full">
-      <div className="bg-zinc-950 text-white rounded-[2rem] overflow-hidden relative border border-zinc-800 transition-all duration-500 hover:shadow-2xl hover:shadow-lime-900/20 hover:border-zinc-700 h-full flex flex-col">
-        
-        {/* Internal Glow matching project accent */}
-        <div
-          className={`absolute top-0 right-0 w-[400px] h-[400px] ${project.accentColor} opacity-10 rounded-full blur-[100px] group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
+    <motion.div variants={fadeInUp} className="h-full">
+      <div
+        onMouseMove={handleMouseMove}
+        className="group relative h-full bg-zinc-900/40 border border-zinc-800 rounded-3xl overflow-hidden hover:border-zinc-700 transition-colors duration-500"
+      >
+        {/* Spotlight Effect Layer */}
+        <motion.div
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100 z-10"
+          style={{
+            background: useMotionTemplate`
+              radial-gradient(
+                600px circle at ${mouseX}px ${mouseY}px,
+                rgba(163, 230, 53, 0.1),
+                transparent 80%
+              )
+            `,
+          }}
         />
 
-        {/* Top: Image Preview */}
-        <div className="relative h-[250px] sm:h-[350px] w-full bg-zinc-900 border-b border-zinc-800 overflow-hidden group-hover:border-zinc-700 transition-colors">
+        {/* Image Section */}
+        <div className="relative h-64 w-full bg-zinc-950 overflow-hidden border-b border-white/5">
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
           />
-          {/* Overlay Gradient for Image */}
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent pointer-events-none" />
+          {/* Dark Overlay that fades on hover */}
+          <div className="absolute inset-0 bg-zinc-950/20 group-hover:bg-transparent transition-colors duration-500" />
+          
+          {/* Category Badge */}
+          <div className="absolute top-4 left-4">
+             <span className="bg-zinc-950/80 backdrop-blur-md border border-white/10 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full shadow-xl">
+               {project.category}
+             </span>
+          </div>
         </div>
 
-        {/* Bottom: Content */}
-        <div className="p-8 flex flex-col flex-1 relative z-10">
+        {/* Content Section */}
+        <div className="p-6 md:p-8 flex flex-col h-[calc(100%-16rem)] relative z-20">
           
-          <div className="flex items-center justify-between mb-6">
-            <span className="border border-zinc-700 px-3 py-1 rounded-full text-xs uppercase tracking-widest bg-zinc-900/50 backdrop-blur-md">
-              {project.category}
-            </span>
-            <span className="text-zinc-500 text-xs font-mono">
-              0{index + 1}
-            </span>
+          <div className="flex justify-between items-start mb-4">
+            <h3 className="text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
+              {project.title}
+            </h3>
+            <span className="text-zinc-600 font-mono text-xs pt-1">{project.year}</span>
           </div>
 
-          <h3 className="text-3xl font-bold mb-4 leading-tight transition-transform duration-500 group-hover:translate-y-1">
-            {project.title}
-          </h3>
-
-          <p className="text-zinc-400 text-sm leading-relaxed mb-6 line-clamp-3">
+          <p className="text-zinc-400 text-sm leading-relaxed mb-6 line-clamp-5 flex-grow">
             {project.description}
           </p>
 
-          {/* Spacer to push buttons to bottom */}
-          <div className="mt-auto pt-6 flex flex-col gap-6">
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((t: string) => (
-                <div
-                  key={t}
-                  className="flex items-center gap-1.5 text-xs font-medium text-zinc-300 bg-zinc-900/50 border border-zinc-800 px-2.5 py-1.5 rounded-md"
-                >
-                  <Code2 className="w-3 h-3 opacity-50" />
-                  {t}
-                </div>
-              ))}
-            </div>
+          <div className="space-y-6 mt-auto">
+            {/* Tech Stack */}
+            
 
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="w-full flex items-center justify-center gap-2 bg-white text-black rounded-full px-6 py-3 font-bold text-sm hover:bg-lime-400 transition-all group/btn"
-            >
-              Visit Live Site
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-            </a>
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-4 border-t border-white/5">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  className="flex-1 flex items-center justify-center gap-2 bg-white text-zinc-950 rounded-lg py-2.5 text-sm font-bold hover:bg-lime-400 transition-colors"
+                >
+                  Live Demo <ArrowUpRight className="w-4 h-4" />
+                </a>
+                <button className="p-2.5 bg-zinc-800 text-zinc-400 rounded-lg hover:text-white hover:bg-zinc-700 transition-colors">
+                    <Github className="w-4 h-4" />
+                </button>
+            </div>
           </div>
         </div>
       </div>

@@ -80,7 +80,7 @@ const projects = [
     title: "Shey Collective",
     category: "Brand Portfolio",
     tech: ["MERN STACK"],
-    link: "https://www.sheycollective.verecel.app",
+    link: "https://sheycollective.vercel.app/",
     image: "/p3.png",
     year: "2024",
   },

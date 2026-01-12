@@ -69,8 +69,6 @@ ${details ? details : "No additional details provided."}
 
   const services = [
     "Web Development",
-    "E-Commerce",
-    "UI/UX Design",
     "Consulting",
   ];
   const budgets = ["50-100k", "100-300k", "300k+"];
@@ -113,7 +111,7 @@ ${details ? details : "No additional details provided."}
               <ContactRow
                 icon={Phone}
                 label="WhatsApp"
-                value="+94 70 1648 169"
+                value="+94 70 164 8169"
               />
               <ContactRow
                 icon={MapPin}

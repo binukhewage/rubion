@@ -83,7 +83,7 @@ const projects = [
     title: "Shey Collective",
     category: "Brand Portfolio",
     tech: ["MERN STACK"],
-    link: "https://sheycollective.vercel.app/",
+    link: "https://www.sheycollective.com",
     image: "/p3.png",
     year: "2024",
   },
@@ -435,11 +435,17 @@ export default function Home() {
             </h2>
           </div>
 
+          {/* --- UPDATED BUTTON HERE --- */}
           <Link
             href="/portfolio"
-            className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-lime-400 transition-colors border-b border-transparent hover:border-lime-400 pb-1 mb-4"
+            className="hidden md:flex items-center gap-3 px-6 py-3 bg-zinc-900 border border-zinc-800 rounded-full text-zinc-300 font-bold text-sm hover:border-lime-400 hover:text-lime-400 hover:bg-zinc-900/80 transition-all duration-300 mb-4 group shadow-lg shadow-black/50"
           >
-            Portfolio <MoveRight className="w-4 h-4" />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400"></span>
+            </span>
+            View More Projects
+            <MoveRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -495,12 +501,13 @@ export default function Home() {
             ))}
           </div>
 
+          {/* Mobile Button Update */}
           <div className="mt-12 md:hidden flex justify-center">
             <Link
               href="/portfolio"
-              className="text-sm font-bold text-white border-b border-zinc-700 pb-1"
+               className="flex items-center gap-3 px-6 py-3 bg-zinc-900 border border-zinc-800 rounded-full text-zinc-300 font-bold text-sm active:scale-95 transition-all"
             >
-              View Entire Portfolio
+              View Entire Portfolio <MoveRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

@@ -50,7 +50,7 @@ const projects = [
     description:
       "A minimalist brand portfolio website focused on visual storytelling. Includes smooth page transitions, refined typography, and interactive animations to highlight creative work and brand identity.",
     tech: ["Next.js", "GSAP", "Prisma"],
-    link: "https://sheycollective.vercel.app/",
+    link: "https://www.sheycollective.com",
     image: "/p3.png",
     year: "2023",
   },

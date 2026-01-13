@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.rubion.dev"),
 
   title: {
-    default: "RuBion — Engineering High-Performance Web Experiences",
+    default: "RuBion",
     template: "%s | RuBion",
   },
 

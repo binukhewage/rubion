@@ -36,7 +36,10 @@ const techStack = [
   { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
   { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
   { name: "Express", icon: "https://cdn.simpleicons.org/express/white" },
-  { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+  {
+    name: "Tailwind CSS",
+    icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+  },
   { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
   { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
 ];
@@ -268,15 +271,17 @@ export default function Home() {
             </Link>
 
             {/* WhatsApp CTA */}
-            <a
-              href="https://wa.me/94701648169?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20potential%20project%20with%20RuBion."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="/contact">
               <button className="min-w-[220px] group px-8 py-4 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-full font-bold hover:border-lime-500/50 hover:text-lime-400 hover:bg-zinc-900/80 backdrop-blur-md transition-all active:scale-95 flex items-center justify-center">
-                <span className="relative z-10 flex items-center gap-2">
-                  Start Project
-                  <WhatsAppIcon className="w-4 h-4 transition-transform group-hover:rotate-12 fill-current text-lime-400" />
+                <span className="relative z-10 flex items-center gap-3">
+                  {/* Blinking Dot */}
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400"></span>
+                  </span>
+
+                  {/* Text */}
+                  <span>Schedule a Call</span>
                 </span>
               </button>
             </a>
@@ -382,30 +387,35 @@ export default function Home() {
       <section className="py-10  relative overflow-hidden">
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10" />
-        
+
         <div className="flex overflow-hidden">
-            <motion.div 
-                initial={{ x: 0 }}
-                animate={{ x: "-50%" }}
-                transition={{ 
-                    duration: 30, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                }}
-                className="flex flex-shrink-0 gap-16 md:gap-32 pr-16 md:pr-32"
-            >
-                {/* Loop 3x to create seamless infinite scroll */}
-                {[...techStack, ...techStack, ...techStack].map((tech, i) => (
-                    <div key={i} className="flex items-center gap-3 group opacity-40 hover:opacity-100 transition-opacity cursor-default grayscale hover:grayscale-0">
-                        <img 
-                          src={tech.icon} 
-                          alt={tech.name} 
-                          className="w-8 h-8 md:w-10 md:h-10 transition-transform " 
-                        />
-                        <span className="text-xl md:text-2xl font-bold text-zinc-500 group-hover:text-white transition-colors">{tech.name}</span>
-                    </div>
-                ))}
-            </motion.div>
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: "-50%" }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="flex flex-shrink-0 gap-16 md:gap-32 pr-16 md:pr-32"
+          >
+            {/* Loop 3x to create seamless infinite scroll */}
+            {[...techStack, ...techStack, ...techStack].map((tech, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 group opacity-40 hover:opacity-100 transition-opacity cursor-default grayscale hover:grayscale-0"
+              >
+                <img
+                  src={tech.icon}
+                  alt={tech.name}
+                  className="w-8 h-8 md:w-10 md:h-10 transition-transform "
+                />
+                <span className="text-xl md:text-2xl font-bold text-zinc-500 group-hover:text-white transition-colors">
+                  {tech.name}
+                </span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 

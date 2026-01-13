@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar"; 
 import { Analytics } from "@vercel/analytics/next"
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +17,46 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RUBION",
-  description: "Trusted By Businesses Worldwide for Cutting-Edge Web Solutions",
+  metadataBase: new URL("https://www.rubion.dev"),
+
+  title: {
+    default: "RuBion — Engineering High-Performance Web Experiences",
+    template: "%s | RuBion",
+  },
+
+  description:
+    "RuBion is a digital engineering studio designing and developing fast, scalable, and reliable websites and web applications for modern businesses.",
+
+  keywords: [
+    "web development agency",
+    "web design studio",
+    "custom website development",
+    "high performance websites",
+    "nextjs web development",
+    "digital studio",
+    "ruBion",
+  ],
+
+  authors: [{ name: "RuBion" }],
+  creator: "RuBion",
+
+  openGraph: {
+    title: "RuBion — Engineering High-Performance Web Experiences",
+    description:
+      "We partner with forward-thinking companies to design and develop fast, scalable, and reliable web applications.",
+    url: "https://www.rubion.dev",
+    siteName: "RuBion",
+    images: [
+      {
+        url: "/og-image.png", // add this image later
+        width: 1200,
+        height: 630,
+        alt: "RuBion — Digital Engineering Studio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -31,6 +70,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
+        <GoogleAnalytics />
         {children}
         <Footer />
         <Analytics />

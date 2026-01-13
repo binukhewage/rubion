@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -26,17 +27,19 @@ export default function Navbar() {
     <>
       <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
         <nav className="relative flex items-center justify-between gap-12 bg-zinc-950/80 backdrop-blur-xl border border-zinc-800 rounded-full px-2 py-2 pr-2 pl-6 shadow-2xl">
-          
           {/* --- LEFT: LOGO (RuBion) --- */}
           <div>
             <Link
               href="/"
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              {/* No Icon, just text as requested */}
-              <span className="font-bold text-lg tracking-tight text-white">
-                Ru<span className="text-lime-400">B</span>ion
-              </span>
+              <Image
+                src="/RubionWeb.png"
+                alt="Rubion logo"
+                width={512}
+                height={512}
+                className="h-10 w-auto object-contain"
+              />
             </Link>
           </div>
 
@@ -49,9 +52,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={`text-xs font-medium transition-colors ${
-                    isActive
-                      ? "text-white"
-                      : "text-zinc-400 hover:text-white"
+                    isActive ? "text-white" : "text-zinc-400 hover:text-white"
                   }`}
                 >
                   {link.name}
@@ -74,7 +75,11 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-zinc-400 hover:text-white bg-zinc-900 rounded-full border border-zinc-800 transition-colors"
             >
-              {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {isOpen ? (
+                <X className="w-4 h-4" />
+              ) : (
+                <Menu className="w-4 h-4" />
+              )}
             </button>
           </div>
         </nav>
@@ -104,7 +109,7 @@ export default function Navbar() {
                     {link.name}
                   </Link>
                 ))}
-                
+
                 <Link
                   href="/contact"
                   className="mt-2 flex items-center justify-center gap-2 w-full bg-lime-400 text-zinc-950 py-3 rounded-xl text-xs font-bold uppercase hover:bg-lime-300 transition-colors"

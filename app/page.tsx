@@ -13,6 +13,19 @@ import {
 } from "lucide-react";
 import { useState, useEffect, MouseEvent } from "react";
 import Link from "next/link";
+import {
+  SiNextdotjs,
+  SiReact,
+  SiNodedotjs,
+  SiMongodb,
+  SiExpress,
+  SiTailwindcss,
+  SiJavascript,
+  SiTypescript,
+  SiFirebase,
+  SiSanity,
+} from "react-icons/si";
+
 
 // --- Custom Icons ---
 
@@ -31,18 +44,17 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 // Official Brand Icons (Using Simple Icons CDN for accuracy)
 const techStack = [
-  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
-  { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
-  { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
-  { name: "Express", icon: "https://cdn.simpleicons.org/express/white" },
-  {
-    name: "Tailwind CSS",
-    icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4",
-  },
-  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
-  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+  { name: "React", icon: SiReact, color: "#61DAFB" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "Express.js", icon: SiExpress, color: "#ffffff" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
 ];
+
 
 const services = [
   {
@@ -384,40 +396,43 @@ export default function Home() {
       </section>
 
       {/* --- Tech Stack Marquee (Now Before Selected Works) --- */}
-      <section className="py-10  relative overflow-hidden">
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10" />
+      <section className="py-10 relative overflow-hidden">
+  {/* Edge fades */}
+  <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10" />
+  <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10" />
 
-        <div className="flex overflow-hidden">
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-50%" }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="flex flex-shrink-0 gap-16 md:gap-32 pr-16 md:pr-32"
+  <div className="flex overflow-hidden">
+    <motion.div
+      initial={{ x: 0 }}
+      animate={{ x: "-50%" }}
+      transition={{
+        duration: 30,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="flex flex-shrink-0 gap-16 md:gap-32 pr-16 md:pr-32"
+    >
+      {[...techStack, ...techStack, ...techStack].map(
+        ({ name, icon: Icon, color }, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-3 group opacity-40 hover:opacity-100 transition-opacity cursor-default grayscale hover:grayscale-0"
           >
-            {/* Loop 3x to create seamless infinite scroll */}
-            {[...techStack, ...techStack, ...techStack].map((tech, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 group opacity-40 hover:opacity-100 transition-opacity cursor-default grayscale hover:grayscale-0"
-              >
-                <img
-                  src={tech.icon}
-                  alt={tech.name}
-                  className="w-8 h-8 md:w-10 md:h-10 transition-transform "
-                />
-                <span className="text-xl md:text-2xl font-bold text-zinc-500 group-hover:text-white transition-colors">
-                  {tech.name}
-                </span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+            <Icon
+              size={36}
+              style={{ color }}
+              className="md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110"
+            />
+            <span className="text-xl md:text-2xl font-bold text-zinc-500 group-hover:text-white transition-colors">
+              {name}
+            </span>
+          </div>
+        )
+      )}
+    </motion.div>
+  </div>
+</section>
+
 
       {/* --- Selected Work (Massive Typography Header) --- */}
       <section className="py-32 bg-zinc-950 relative overflow-hidden">

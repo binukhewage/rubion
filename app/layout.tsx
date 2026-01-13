@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   creator: "RuBion",
 
   openGraph: {
-    title: "RuBion — Engineering High-Performance Web Experiences",
+    title: "RuBion",
     description:
       "We partner with forward-thinking companies to design and develop fast, scalable, and reliable web applications.",
     url: "https://www.rubion.dev",

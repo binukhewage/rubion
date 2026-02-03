@@ -84,7 +84,7 @@ const projects = [
   {
     id: 1,
     title: "Ceylon Wild Escapes",
-    category: "Tourism Platform",
+    category: "Custom Website",
     tech: ["MERN STACK "],
     link: "https://www.ceylonwildescapes.com",
     image: "/p001.png",
@@ -93,7 +93,7 @@ const projects = [
   {
     id: 2,
     title: "Shey Collective",
-    category: "Brand Portfolio",
+    category: "Portfolio",
     tech: ["MERN STACK"],
     link: "https://www.sheycollective.com",
     image: "/p3.png",

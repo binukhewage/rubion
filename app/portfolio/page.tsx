@@ -24,7 +24,7 @@ const projects = [
   {
     id: 1,
     title: "Ceylon Wild Escapes",
-    category: "Web Development",
+    category: "Custom Webiste",
     description:
       "A modern wildlife tourism website designed for performance and storytelling. Built with a responsive layout, smooth page animations, and a custom contact-based booking workflow optimized for accessibility and speed.",
     tech: ["Next.js 14", "Tailwind CSS", "Framer Motion"],
@@ -46,7 +46,7 @@ const projects = [
   {
     id: 3,
     title: "Shey Collective",
-    category: "Branding",
+    category: "Portfolio",
     description:
       "A minimalist brand portfolio website focused on visual storytelling. Includes smooth page transitions, refined typography, and interactive animations to highlight creative work and brand identity.",
     tech: ["Next.js", "GSAP", "Prisma"],
@@ -171,7 +171,7 @@ function ProjectCard({ project }: { project: any }) {
         <div className="p-6 md:p-8 flex flex-col h-[calc(100%-16rem)] relative z-20">
           
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
+            <h3 className="text-2xl font-bold text-white transition-colors">
               {project.title}
             </h3>
             <span className="text-zinc-600 font-mono text-xs pt-1">{project.year}</span>

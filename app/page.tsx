@@ -97,7 +97,7 @@ const projects = [
     tech: ["MERN STACK"],
     link: "https://www.sheycollective.com",
     image: "/p3.png",
-    year: "2024",
+    year: "2025",
   },
 ];
 

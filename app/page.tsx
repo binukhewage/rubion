@@ -250,7 +250,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-8 leading-[0.95]"
+            className="font-display text-5xl md:text-8xl font-semibold tracking-tight text-white mb-8 leading-[0.95]"
           >
             Your Trusted Partner <br />
             <span className="text-zinc-600">For Web Solutions.</span>
